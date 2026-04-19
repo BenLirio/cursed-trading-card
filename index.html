@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursed Trading Card</title>
+  <meta property="og:title" content="Cursed Trading Card">
+  <meta property="og:description" content="Type a creature concept. Get a hand-painted cursed trading card with name, stats, and lore.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=IM+Fell+English:ital,wght@0,400;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+  <script src="feedback.js" defer></script>
+</head>
+<body>
+  <main>
+    <section id="intro" class="screen">
+      <h1 class="title-stack">
+        <span class="title-line top">Cursed</span>
+        <span class="title-line mid">Trading</span>
+        <span class="title-line bot">Card</span>
+      </h1>
+      <p class="lede">Type a creature concept. The card forges itself.</p>
+
+      <form id="concept-form" autocomplete="off">
+        <label for="concept-input" class="visually-hidden">Creature concept</label>
+        <input
+          id="concept-input"
+          type="text"
+          maxlength="120"
+          placeholder="gas station mystic, overcaffeinated raccoon CEO…"
+          required
+        >
+        <button type="submit" id="forge-btn">Forge the card</button>
+        <p id="error-msg" class="error hidden"></p>
+      </form>
+
+      <p class="hint">tip: the weirder the concept, the cursed-er the card.</p>
+    </section>
+
+    <section id="loading" class="screen hidden">
+      <div class="loader-frame">
+        <div class="loader-spinner"></div>
+        <p id="loading-copy" class="loading-copy">summoning your cryptid…</p>
+        <p class="loading-sub">hand-painting the artwork (this takes 8–15 seconds)</p>
+      </div>
+    </section>
+
+    <section id="result" class="screen hidden">
+      <div id="card-stage">
+        <div id="card" class="card">
+          <div class="card-foil">
+            <div class="card-inner">
+              <header class="card-header">
+                <h2 id="card-name" class="card-name"></h2>
+                <div id="card-cost" class="card-cost"></div>
+              </header>
+
+              <div class="card-art-frame">
+                <div id="card-art" class="card-art">
+                  <div class="art-placeholder">summoning…</div>
+                </div>
+                <div class="card-holo"></div>
+              </div>
+
+              <div class="card-type-bar">
+                <span id="card-type" class="card-type">Creature</span>
+                <span class="card-set">CRSD · 1996</span>
+              </div>
+
+              <div class="card-lore-box">
+                <p id="card-lore" class="card-lore"></p>
+              </div>
+
+              <footer class="card-footer">
+                <div class="card-stats">
+                  <div class="stat">
+                    <span class="stat-label">ATK</span>
+                    <span id="card-atk" class="stat-val">0</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-label">DEF</span>
+                    <span id="card-def" class="stat-val">0</span>
+                  </div>
+                </div>
+                <div class="card-watermark">CURSED&nbsp;HOLO</div>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button id="download-btn" class="btn btn-primary" type="button">Download PNG</button>
+        <button id="share-btn" class="btn" type="button" onclick="share()">Share this card</button>
+        <button id="redo-btn" class="btn btn-ghost" type="button">Forge another</button>
+      </div>
+      <p class="share-caveat">Recipients see the same card text — the artwork regenerates on their device.</p>
+    </section>
+  </main>
+</body>
+</html>
